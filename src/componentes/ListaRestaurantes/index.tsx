@@ -12,7 +12,7 @@ const ListaRestaurantes = () => {
         {
           id: 1,
           descricao: 'Lasanha à Bolonhesa',
-          imagem: 'https://receitassaborosa.com/wp-content/uploads/2019/12/Lasanha-com-Molho-a-Bolonhesa.jpg',
+          imagem: 'https://achougastronomia.com.br/wp-content/uploads/2022/01/Receita-de-lasanha-de-carne.jpg.webp',
           nome: 'Lasanha',
           restaurante: 1,
           tag: 'Italiana'
@@ -28,7 +28,7 @@ const ListaRestaurantes = () => {
         {
           id: 3,
           descricao: 'Empadão de Frango',
-          imagem: 'https://t1.uc.ltmcdn.com/pt/images/5/7/1/img_como_fazer_empadao_de_frango_27175_600.jpg',
+          imagem: 'https://s2.glbimg.com/NLGBfVlTN8cf57b6codSbnscni8=/0x0:6240x3512/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2021/j/U/GCcKqXQSedehZjsvwKNQ/empadao-de-frango-receita-tradicional.jpg',
           nome: 'Empadão de Frango',
           restaurante: 1,
           tag: 'Portuguesa'
