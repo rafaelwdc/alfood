@@ -1,8 +1,4 @@
-import { TableContainer, Paper } from '@mui/material';
-import Table from '@mui/material/Table';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
+import { Button, TableContainer, Paper, Table, TableCell, TableHead, TableRow } from '@mui/material';
 import { useEffect, useState } from 'react';
 import IRestaurante from '../../../interfaces/IRestaurante';
 import axios from 'axios';
@@ -15,6 +11,15 @@ const AdministracaoRestaurantes = () => {
         axios.get('http://localhost:8000/api/v2/restaurantes/')
             .then(resposta => setRestaurantes(resposta.data))
     }, [])
+
+    const excluir = (restauranteAhSerExcluido: IRestaurante) => {
+        axios.delete(`http://localhost:8000/api/v2/restaurantes/${restauranteAhSerExcluido.id}/`)
+        .then(()=> {
+            const listaRestaurante = restaurantes.filter(restaurante => restaurante.id !== restauranteAhSerExcluido.id)
+            setRestaurantes([ ...listaRestaurante ])
+        })
+    }
+
     return (
         <TableContainer component={Paper}>
             <Table>
@@ -26,18 +31,30 @@ const AdministracaoRestaurantes = () => {
                         <TableCell>
                             Editar
                         </TableCell>
+                        <TableCell>
+                            Excluir
+                        </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {restaurantes.map(restaurante => <TableRow key={restaurante.id}> 
+                    {restaurantes.map(restaurante => <TableRow key={restaurante.id}>
                         <TableCell>
                             {restaurante.nome}
                         </TableCell>
                         <TableCell>
                             [<Link to={`/admin/restaurante/${restaurante.id}`}>editar</Link>]
                         </TableCell>
+                        <TableCell>
+                            <Button 
+                                onClick={() => excluir(restaurante)}
+                                variant="outlined" 
+                                color="error"
+                            >
+                                Excluir
+                            </Button>
+                        </TableCell>
                     </TableRow>)}
-                    
+
                 </TableBody>
             </Table>
 
