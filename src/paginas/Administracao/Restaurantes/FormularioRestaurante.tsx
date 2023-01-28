@@ -1,8 +1,8 @@
 import { Button, TextField, Typography } from '@mui/material';
-import { Box, display } from '@mui/system';
-import axios from 'axios';
+import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import http from '../../../http';
 import IRestaurante from '../../../interfaces/IRestaurante';
 
 const FormularioRestaurante = () => {
@@ -11,7 +11,7 @@ const FormularioRestaurante = () => {
 
     useEffect(() => {
         if (paramentros.id) {
-            axios.get<IRestaurante>(`http://localhost:8000/api/v2/restaurantes/${paramentros.id}/`)
+            http.get<IRestaurante>(`restaurantes/${paramentros.id}/`)
                 .then(resposta => setNomeRestaurante(resposta.data.nome))
         }
     }, [paramentros])
@@ -21,14 +21,14 @@ const FormularioRestaurante = () => {
     const aoSubmeterForm = (evento: React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault();
         if (paramentros.id) {
-            axios.put(`http://localhost:8000/api/v2/restaurantes/${paramentros.id}/`, {
+            http.put(`restaurantes/${paramentros.id}/`, {
                 nome: nomeRestaurante
             })
                 .then(() => {
                     alert("Restaurante atualizado com sucesso")
                 })
         } else {
-            axios.post('http://localhost:8000/api/v2/restaurantes/', {
+            http.post('restaurantes/', {
                 nome: nomeRestaurante
             })
                 .then(() => {
@@ -67,7 +67,7 @@ const FormularioRestaurante = () => {
                     type='submit'
                     variant="outlined"
                 >
-                    Outlined
+                    Salvar
                 </Button>
             </Box>
         </Box>
